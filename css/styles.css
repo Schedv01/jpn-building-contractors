@@ -293,6 +293,15 @@ textarea:focus-visible,
 
 /* Services dropdown */
 .nav-item{ position: relative; }
+.nav-item::after{
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max(100%, 270px);
+  height: 22px;
+}
 .nav-trigger{
   display: flex;
   align-items: center;
@@ -415,6 +424,7 @@ textarea:focus-visible,
   }
   .primary-nav > a::after{ display: none; }
   .nav-item{ position: static; }
+  .nav-item::after{ content: none; }
   .nav-trigger{
     width: 100%;
     justify-content: space-between;
