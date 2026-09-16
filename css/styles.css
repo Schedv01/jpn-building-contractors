@@ -505,7 +505,7 @@ textarea:focus-visible,
   position: relative;
   z-index: 1;
   width: 100%;
-  padding-block: var(--space-6) var(--space-8);
+  padding-block: var(--space-3) var(--space-8);
 }
 .hero-badge{
   display: inline-flex;
@@ -529,7 +529,7 @@ textarea:focus-visible,
   font-weight: 500;
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   color: var(--color-accent);
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
   letter-spacing: 0.01em;
 }
 .hero-content h1{
