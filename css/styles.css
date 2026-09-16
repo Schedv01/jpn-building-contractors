@@ -479,7 +479,7 @@ textarea:focus-visible,
   position: relative;
   min-height: 92svh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   color: var(--color-text-on-dark);
   overflow: hidden;
 }
@@ -492,7 +492,7 @@ textarea:focus-visible,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 62%;
+  object-position: center 38%;
 }
 .hero-media::after{
   content: '';
@@ -505,7 +505,7 @@ textarea:focus-visible,
   position: relative;
   z-index: 1;
   width: 100%;
-  padding-block: var(--space-8) var(--space-7);
+  padding-block: var(--space-7);
 }
 .hero-badge{
   display: inline-flex;
@@ -804,7 +804,33 @@ textarea:focus-visible,
 .drone-benefit h4{ color: #fff; font-size: var(--fs-300); font-weight: 700; }
 .drone-benefit p{ color: var(--color-text-on-dark-muted); font-size: var(--fs-200); margin-top: 2px; }
 
-.drone-cta{ margin-top: var(--space-6); display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.drone-pricing{
+  margin-top: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+}
+.drone-price-tag{
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 0.6rem 1rem;
+  background: var(--color-accent);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: var(--font-display);
+}
+.drone-price-tag span:first-child{ font-size: var(--fs-100); font-weight: 600; opacity: 0.85; }
+.drone-price-tag strong{ font-size: var(--fs-600); font-weight: 800; line-height: 1; }
+.drone-price-tag span:last-child{ font-size: var(--fs-100); font-weight: 600; opacity: 0.85; }
+.drone-pricing p{ color: var(--color-text-on-dark-muted); font-size: var(--fs-200); margin: 0; }
+
+.drone-cta{ margin-top: var(--space-5); display: flex; gap: var(--space-3); flex-wrap: wrap; }
 
 .drone-visual{
   position: relative;
@@ -859,6 +885,7 @@ textarea:focus-visible,
 }
 @media (max-width: 640px){
   .drone-strip{ grid-template-columns: repeat(2, 1fr); }
+  .drone-pricing{ flex-direction: column; align-items: flex-start; }
 }
 
 /* ==========================================================================
@@ -1024,6 +1051,18 @@ textarea:focus-visible,
   border: 1px solid var(--color-border);
 }
 .stars{ display: flex; gap: 3px; color: #f5a623; margin-bottom: var(--space-3); }
+.why-icon{
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-100);
+  color: var(--color-accent-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.why-icon svg{ width: 24px; height: 24px; }
 .stars svg{ width: 17px; height: 17px; }
 .testimonial-card blockquote{
   margin: 0;
