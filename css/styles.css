@@ -238,12 +238,12 @@ textarea:focus-visible,
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-header-bg);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
   isolation: isolate;
   transition: box-shadow var(--dur-slow) var(--ease-standard);
 }
-.site-header.scrolled{ box-shadow: 0 12px 30px rgba(0,0,0,0.28); }
+.site-header.scrolled{ box-shadow: 0 12px 30px rgba(20,24,26,0.12); }
 .header-inner{
   display: flex;
   align-items: center;
@@ -254,15 +254,15 @@ textarea:focus-visible,
 .brand{
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--color-ink);
 }
 .brand img{
-  height: 50px;
+  height: 54px;
   width: auto;
   display: block;
 }
 @media (min-width: 1101px){
-  .brand img{ height: 58px; }
+  .brand img{ height: 62px; }
 }
 
 .primary-nav{
@@ -273,7 +273,7 @@ textarea:focus-visible,
 .primary-nav > a{
   font-weight: 500;
   font-size: var(--fs-200);
-  color: rgba(255,255,255,0.92);
+  color: var(--color-text);
   position: relative;
   padding-block: 4px;
   transition: color var(--dur-base) var(--ease-standard);
@@ -311,7 +311,7 @@ textarea:focus-visible,
   font-family: inherit;
   font-weight: 500;
   font-size: var(--fs-200);
-  color: rgba(255,255,255,0.92);
+  color: var(--color-text);
   padding-block: 4px;
   cursor: pointer;
   transition: color var(--dur-base) var(--ease-standard);
@@ -386,7 +386,7 @@ textarea:focus-visible,
   gap: 0.5rem;
   font-weight: 500;
   font-size: var(--fs-200);
-  color: #fff;
+  color: var(--color-ink);
 }
 .header-call svg{ width: 18px; height: 18px; color: var(--color-accent); }
 
@@ -396,7 +396,7 @@ textarea:focus-visible,
   border: none;
   padding: 8px;
   cursor: pointer;
-  color: #fff;
+  color: var(--color-ink);
 }
 .nav-toggle svg{ width: 26px; height: 26px; }
 
@@ -468,7 +468,7 @@ textarea:focus-visible,
 
 @media (max-width: 560px){
   .header-inner{ padding-block: 0.5rem; }
-  .brand img{ height: 40px; }
+  .brand img{ height: 44px; }
   .header-actions{ gap: var(--space-2); }
 }
 
@@ -1314,7 +1314,13 @@ textarea:focus-visible,
   gap: var(--space-6);
 }
 .footer-brand .brand{ color: #fff; }
-.footer-brand .brand img{ height: 56px; box-shadow: none; }
+.footer-logo-card{
+  display: inline-flex;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+}
+.footer-brand .brand img{ height: 48px; box-shadow: none; }
 .footer-brand p{ margin-top: var(--space-3); max-width: 34ch; font-size: var(--fs-200); }
 .footer-col h4{
   color: #fff;

@@ -1,3 +1,4 @@
+*.pdf
+*.psd
 .DS_Store
 .claude/
-*.psd
