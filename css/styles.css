@@ -477,9 +477,9 @@ textarea:focus-visible,
    ========================================================================== */
 .hero{
   position: relative;
-  min-height: 92svh;
+  min-height: 82svh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: var(--color-text-on-dark);
   overflow: hidden;
 }
@@ -505,7 +505,7 @@ textarea:focus-visible,
   position: relative;
   z-index: 1;
   width: 100%;
-  padding-block: var(--space-7);
+  padding-block: var(--space-6) var(--space-8);
 }
 .hero-badge{
   display: inline-flex;
