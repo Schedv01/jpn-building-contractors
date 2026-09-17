@@ -480,6 +480,24 @@ textarea:focus-visible,
 }
 
 /* ==========================================================================
+   Kicker strip
+   ========================================================================== */
+.kicker-strip{
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.kicker-strip .container{
+  padding-block: 0.65rem;
+  text-align: center;
+  font-family: 'Fraunces', 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--color-accent);
+  letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
    Hero
    ========================================================================== */
 .hero{
@@ -531,18 +549,8 @@ textarea:focus-visible,
   margin-bottom: var(--space-1);
 }
 .hero-badge svg{ width: 16px; height: 16px; color: var(--color-accent); }
-.hero-kicker{
-  font-family: 'Fraunces', 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  color: #ff5c72;
-  margin-top: var(--space-1);
-  letter-spacing: 0.01em;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.55);
-}
 .hero-content h1{
-  margin-top: 0.4rem;
+  margin-top: var(--space-2);
   color: #fff;
   font-size: clamp(2.1rem, 4.6vw, 3.4rem);
   max-width: 19ch;
