@@ -20,6 +20,19 @@
   window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
   window.addEventListener('resize', setHeaderHeightVar);
 
+  /* ---------------- Back to top (mobile only) ---------------- */
+  var backToTop = document.getElementById('backToTop');
+
+  function updateBackToTopVisibility() {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }
+
+  updateBackToTopVisibility();
+  window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   /* ---------------- Mobile nav ---------------- */
   var navToggle = document.getElementById('navToggle');
   var primaryNav = document.getElementById('primary-nav');
