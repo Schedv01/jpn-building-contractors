@@ -507,7 +507,7 @@ textarea:focus-visible,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(23,24,26,0.58) 0%, rgba(23,24,26,0.34) 28%, rgba(23,24,26,0.5) 62%, rgba(23,24,26,0.92) 100%);
+    linear-gradient(180deg, rgba(23,24,26,0.78) 0%, rgba(23,24,26,0.68) 35%, rgba(23,24,26,0.58) 65%, rgba(23,24,26,0.9) 100%);
 }
 .hero-content{
   position: relative;
@@ -536,15 +536,17 @@ textarea:focus-visible,
   font-style: italic;
   font-weight: 500;
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  color: var(--color-accent);
+  color: #ff5c72;
   margin-top: var(--space-1);
   letter-spacing: 0.01em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.55);
 }
 .hero-content h1{
   margin-top: 0.4rem;
   color: #fff;
   font-size: clamp(2.1rem, 4.6vw, 3.4rem);
   max-width: 19ch;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.45);
 }
 .hero-content h1 em{
   font-style: normal;
@@ -554,7 +556,8 @@ textarea:focus-visible,
   margin-top: var(--space-4);
   max-width: 56ch;
   font-size: var(--fs-400);
-  color: var(--color-text-on-dark-muted);
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }
 .hero-cta-row{
   display: flex;
