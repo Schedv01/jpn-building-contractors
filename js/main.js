@@ -42,44 +42,6 @@
     if (e.key === 'Escape') closeNav();
   });
 
-  /* ---------------- Services nav dropdown ---------------- */
-  var navItems = Array.prototype.slice.call(document.querySelectorAll('.nav-item'));
-
-  function closeAllNavItems(except) {
-    navItems.forEach(function (item) {
-      if (item !== except) {
-        item.classList.remove('open');
-        var trigger = item.querySelector('.nav-trigger');
-        if (trigger) trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  navItems.forEach(function (item) {
-    var trigger = item.querySelector('.nav-trigger');
-    if (!trigger) return;
-    trigger.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var isOpen = item.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', String(isOpen));
-      closeAllNavItems(item);
-    });
-  });
-
-  document.addEventListener('click', function (e) {
-    navItems.forEach(function (item) {
-      if (!item.contains(e.target)) {
-        item.classList.remove('open');
-        var trigger = item.querySelector('.nav-trigger');
-        if (trigger) trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeAllNavItems(null);
-  });
-
   /* ---------------- Scroll reveal ---------------- */
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
