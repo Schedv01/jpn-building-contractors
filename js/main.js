@@ -74,49 +74,35 @@
     revealEls.forEach(function (el) { el.classList.add('in-view'); });
   }
 
-  /* ---------------- Gallery filter ---------------- */
-  var tabs = document.querySelectorAll('.gallery-tab');
-  var items = document.querySelectorAll('.gallery-item');
-
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      tabs.forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
-      tab.setAttribute('aria-pressed', 'true');
-      var filter = tab.getAttribute('data-filter');
-      items.forEach(function (item) {
-        var cats = (item.getAttribute('data-cat') || '').split(' ');
-        var match = filter === 'all' || cats.indexOf(filter) !== -1;
-        item.style.display = match ? '' : 'none';
-      });
-    });
-  });
-
-  /* ---------------- Lightbox ---------------- */
+  /* ---------------- Lightbox / project slideshows ---------------- */
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightboxImg');
   var lightboxCaption = document.getElementById('lightboxCaption');
+  var lightboxCount = document.getElementById('lightboxCount');
   var lightboxClose = document.getElementById('lightboxClose');
   var lightboxPrev = document.getElementById('lightboxPrev');
   var lightboxNext = document.getElementById('lightboxNext');
 
-  var lightboxTriggers = Array.prototype.slice.call(
-    document.querySelectorAll('[data-full], [data-lightbox]')
-  );
+  var slides = [];
+  var slideTitle = '';
   var currentIndex = -1;
   var lastFocused = null;
 
-  function sourceFor(el) {
-    return el.getAttribute('data-full') || el.getAttribute('href');
+  function showSlide(i) {
+    currentIndex = (i + slides.length) % slides.length;
+    lightboxImg.src = slides[currentIndex].src;
+    lightboxImg.alt = slides[currentIndex].alt;
+    lightboxCaption.textContent = slideTitle;
+    lightboxCount.textContent = slides.length > 1 ? (currentIndex + 1) + ' / ' + slides.length : '';
+    var multi = slides.length > 1;
+    lightboxPrev.style.display = lightboxNext.style.display = multi ? '' : 'none';
   }
 
-  function openLightbox(index) {
-    currentIndex = index;
-    var el = lightboxTriggers[index];
-    if (!el) return;
+  function openLightbox(list, title, start) {
+    slides = list;
+    slideTitle = title;
     lastFocused = document.activeElement;
-    lightboxImg.src = sourceFor(el);
-    lightboxImg.alt = el.querySelector('img') ? el.querySelector('img').alt : '';
-    lightboxCaption.textContent = el.getAttribute('data-caption') || '';
+    showSlide(start || 0);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
     lightboxClose.focus();
@@ -129,32 +115,47 @@
     if (lastFocused) lastFocused.focus();
   }
 
-  function showRelative(delta) {
-    if (currentIndex === -1) return;
-    var next = (currentIndex + delta + lightboxTriggers.length) % lightboxTriggers.length;
-    openLightbox(next);
-  }
+  document.querySelectorAll('.project-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var title = card.getAttribute('data-title');
+      var list = card.getAttribute('data-images').split('|').map(function (src, n) {
+        return { src: src, alt: title + ' — photo ' + (n + 1) };
+      });
+      openLightbox(list, title, 0);
+    });
+  });
 
-  lightboxTriggers.forEach(function (el, i) {
+  var droneLinks = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+  var droneSlides = droneLinks.map(function (el) {
+    var img = el.querySelector('img');
+    return { src: el.getAttribute('href'), alt: img ? img.alt : '', caption: el.getAttribute('data-caption') || '' };
+  });
+  droneLinks.forEach(function (el, i) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      openLightbox(i);
+      openLightbox(droneSlides, 'Drone survey', i);
     });
   });
 
   lightboxClose.addEventListener('click', closeLightbox);
-  lightboxPrev.addEventListener('click', function () { showRelative(-1); });
-  lightboxNext.addEventListener('click', function () { showRelative(1); });
+  lightboxPrev.addEventListener('click', function () { showSlide(currentIndex - 1); });
+  lightboxNext.addEventListener('click', function () { showSlide(currentIndex + 1); });
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
 
-  lightbox.addEventListener('click', function (e) {
-    if (e.target === lightbox) closeLightbox();
+  var touchX = null;
+  lightbox.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend', function (e) {
+    if (touchX === null || slides.length < 2) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) showSlide(currentIndex + (dx < 0 ? 1 : -1));
+    touchX = null;
   });
 
   document.addEventListener('keydown', function (e) {
     if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') showRelative(-1);
-    if (e.key === 'ArrowRight') showRelative(1);
+    if (e.key === 'ArrowLeft') showSlide(currentIndex - 1);
+    if (e.key === 'ArrowRight') showSlide(currentIndex + 1);
   });
 
   /* ---------------- Contact form validation ---------------- */
