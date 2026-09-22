@@ -652,6 +652,20 @@ textarea:focus-visible,
   font-size: clamp(1.9rem, 3.4vw, var(--fs-700));
   margin-top: var(--space-2);
 }
+.drone-nationwide-tag{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: var(--space-3);
+  padding: 0.4rem 0.85rem;
+  background: rgba(200,16,46,0.15);
+  border: 1px solid rgba(200,16,46,0.35);
+  border-radius: var(--radius-pill);
+  color: var(--color-accent);
+  font-size: var(--fs-200);
+  font-weight: 700;
+}
+.drone-nationwide-tag svg{ width: 15px; height: 15px; }
 .drone-copy > p{
   margin-top: var(--space-4);
   color: var(--color-text-on-dark-muted);
